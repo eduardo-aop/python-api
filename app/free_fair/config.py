@@ -11,7 +11,7 @@ import psycopg2
 user = 'admin'
 password = 'api-db'
 database = 'feira-livre'
-host = 'localhost'
+host = 'feira-livre-db'
 port = 5432
 
 # conn = psycopg2.connect(

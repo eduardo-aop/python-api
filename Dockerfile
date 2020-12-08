@@ -1,13 +1,16 @@
 # set base image (host OS)
 FROM python:3.9
 
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
 
-COPY ./app /app
+RUN python -m pip install --upgrade pip
 
-EXPOSE 5432
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
+WORKDIR app
+
+COPY ./app /
+
 EXPOSE 5000
 # command to run on container start
-CMD [ "python", "main.py" ]
+CMD [ "python", "-u", "-B", "main.py" ]
