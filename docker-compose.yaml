@@ -1,0 +1,34 @@
+version: '3.5'
+services:
+  ms:
+    build:
+      context: .
+    image: python-api-image:latest
+    container_name: python-api-image
+    volumes:
+      - .:/app
+    networks:
+      - api-python
+    depends_on:
+      - "db"
+  db:
+    image: postgres:12-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASS=api-db
+      - POSTGRES_DBNAME=feira-livre
+    volumes:
+      - api-db:/var/lib/postgresql
+    restart: always
+    networks:
+      - api-python
+
+volumes:
+  api-db:
+    driver: local
+
+networks:
+  api-python:
+    name: api-python-network
