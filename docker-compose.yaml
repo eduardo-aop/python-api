@@ -5,20 +5,23 @@ services:
       context: .
     image: python-api-image:latest
     container_name: python-api-image
+    ports:
+      - 5000:5000
     volumes:
-      - .:/app
+      - ./app:/app
     networks:
       - api-python
     depends_on:
       - "db"
   db:
     image: postgres:12-alpine
+    container_name: feira-livre-db
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER=admin
-      - POSTGRES_PASS=api-db
-      - POSTGRES_DBNAME=feira-livre
+      - POSTGRES_PASSWORD=api-db
+      - POSTGRES_DB=feira-livre
     volumes:
       - api-db:/var/lib/postgresql
     restart: always
