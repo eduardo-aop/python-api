@@ -1,6 +1,7 @@
 from flask import Flask
-# import config
-from free_fair.rest_service import free_fair
+from app.free_fair.rest_service import free_fair
+import app.imports.service
+import os
 
 server = Flask(__name__)
 
@@ -13,5 +14,7 @@ def init():
 
 
 if __name__ == '__main__':
+    # entries = os.listdir()
+    # print(entries)
     server.run(host='0.0.0.0')
 

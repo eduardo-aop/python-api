@@ -1,6 +1,7 @@
-from .config import Base
+from ..config.config import Base
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import Column, Integer, String
+import sqlalchemy as db
 
 import uuid
 
@@ -12,16 +13,17 @@ class Fair(Base):
     uuid = Column(UUID(as_uuid=True), default=uuid.uuid4, unique=True, nullable=False)
     long = Column(String)
     lat = Column(String)
-    setcent = Column(String)
-    area = Column(String)
+    setcens = Column(String)
+    areap = Column(String)
     coddist = Column(String)
     distrito = Column(String)
     codsubpref = Column(String)
+    subprefe = Column(String)
     regiao5 = Column(String)
     regiao8 = Column(String)
     nome_feira = Column(String)
     registro = Column(String)
     logradouro = Column(String)
-    numero = Column(Integer)
+    numero = Column(String)
     bairro = Column(String)
     referencia = Column(String)
