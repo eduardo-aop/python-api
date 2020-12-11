@@ -1,4 +1,5 @@
 import json
+from uuid import UUID
 from sqlalchemy.ext.declarative import DeclarativeMeta
 
 
@@ -11,7 +12,11 @@ class AlchemyEncoder(json.JSONEncoder):
             for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
                 data = obj.__getattribute__(field)
                 try:
-                    json.dumps(data) # this will fail on non-encodable values, like other classes
+                    if isinstance(data, UUID):
+                        json.dumps(data.__str__())
+                        data = data.__str__()
+                    else:
+                        json.dumps(data)  # this will fail on non-encodable values, like other classes
                     fields[field] = data
                 except TypeError:
                     fields[field] = None

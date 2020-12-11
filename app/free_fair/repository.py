@@ -1,13 +1,14 @@
+from typing import List
+
 from ..config.config import session
 from .model import Fair
+
+import uuid
 
 
 class FreeFairRepository:
 
     def filter(self, nome_feira: str, distrito: str, regiao5: str, bairro: str):
-        print('locura ====================')
-        print(nome_feira)
-        print(distrito)
         query_filter = []
         if nome_feira is not None:
             print(nome_feira)
@@ -24,13 +25,23 @@ class FreeFairRepository:
 
         return session.query(Fair).filter(*query_filter).all()
 
-    def find_all(self):
-        return session.query(Fair).all()
+    def find_by_uuid(self, fair_uuid: uuid.uuid4):
+        return session.query(Fair).filter(Fair.uuid == fair_uuid).first()
 
-    def save(self, fair):
+    def save(self, fair: Fair):
         session.add(fair)
         session.commit()
 
-    def save_all(self, fairs):
+    def save_all(self, fairs: List[Fair]):
         session.bulk_save_objects(fairs)
         session.commit()
+
+    def delete(self, fair_uuid: uuid.uuid4):
+        deleted = session.query(Fair).filter(Fair.uuid == fair_uuid).delete()
+        session.commit()
+        return deleted if deleted != 0 else None
+
+    def update(self, fair_uuid: uuid.uuid4, fair: Fair):
+        updated = session.query(Fair).filter(Fair.uuid == fair_uuid).update(fair)
+        session.commit()
+        return updated if updated != 0 else None

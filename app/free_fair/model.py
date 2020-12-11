@@ -1,7 +1,6 @@
 from ..config.config import Base
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import Column, Integer, String
-import sqlalchemy as db
 
 import uuid
 
@@ -9,8 +8,8 @@ import uuid
 class Fair(Base):
     __tablename__ = 'feira_livre'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    uuid = Column(UUID(as_uuid=True), default=uuid.uuid4, unique=True, nullable=False)
+    uuid = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False, key='uuid_')
+    id = Column(Integer)
     long = Column(String)
     lat = Column(String)
     setcens = Column(String)

@@ -1,12 +1,15 @@
 import sqlalchemy as db
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import os
 
 # user = os.environ['POSTGRES_USER']
 # password = os.environ['POSTGRES_PASSWORD']
 # database = os.environ['POSTGRES_DB']
 # host = os.environ['POSTGRES_HOST']
 # port = os.environ['POSTGRES_PORT']
+
+
 user = 'admin'
 password = 'api-db'
 database = 'feira-livre'
