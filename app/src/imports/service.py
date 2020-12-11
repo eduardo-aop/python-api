@@ -6,7 +6,7 @@ from ..free_fair.service import FreeFairService
 from .repository import ImportsFileRepository
 from .model import ImportsFile
 
-directory = 'app/imports/assets/'
+directory = 'app/src/imports/assets/'
 
 entries = os.listdir(directory)
 importedFiles = ImportsFileRepository().find_all()

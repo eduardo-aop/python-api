@@ -1,7 +1,6 @@
 import sqlalchemy as db
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import os
 
 # user = os.environ['POSTGRES_USER']
 # password = os.environ['POSTGRES_PASSWORD']

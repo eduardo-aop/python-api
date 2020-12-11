@@ -1,7 +1,6 @@
 from flask import Flask
-from app.free_fair.rest_service import free_fair
-import app.imports.service
-import os
+from app.src.free_fair.rest_service import free_fair
+import app.src.imports.service
 
 server = Flask(__name__)
 

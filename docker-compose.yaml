@@ -3,6 +3,7 @@ services:
   ms:
     build:
       context: .
+    command: bash -c "alembic upgrade head && python -u -B main.py"
     image: python-api-image:latest
     container_name: python-api-image
     ports:
